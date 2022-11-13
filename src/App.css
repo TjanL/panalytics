@@ -1,38 +1,23 @@
-.App {
-  text-align: center;
+@import url('@fortawesome/fontawesome-free/css/all.css');
+@import url('chartist/dist/index.css');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.ct-series-a .ct-line {
+	stroke: theme('colors.sky.100');
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.ct-series-b .ct-line {
+	stroke: theme('colors.slate.800');
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.ct-chart-line {
+	overflow: visible;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.ct-label.ct-horizontal.ct-end {
+	transform: translate(-40px, 30px) rotate(-45deg);
+	white-space: nowrap;
 }
