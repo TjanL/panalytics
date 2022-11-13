@@ -18,7 +18,7 @@ jobs:
           cmd: build # will run `yarn build` command
       - uses: actions/upload-artifact@v2
         with: 
-          name: site
+          name: deployment
           path: build
 
   # Deploy job
