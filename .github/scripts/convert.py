@@ -37,7 +37,7 @@ if __name__ == "__main__":
     for path in Path(args.d).glob("*.json"):
         data = parse_file(path)
 
-        with open(f"{Path(args.dir).joinpath(path.stem)}.csv", "w", newline="") as file:
+        with open(f"{Path(args.d).joinpath(path.stem)}.csv", "w", newline="") as file:
             writer = csv.DictWriter(file, fieldnames=["Date", "Poops"])
             writer.writeheader()
             writer.writerows(data)
