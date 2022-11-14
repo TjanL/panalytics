@@ -13,7 +13,7 @@ jobs:
       - uses: actions/checkout@v2
       - run: sudo apt install -y dotnet6
       - run: wget https://github.com/Tyrrrz/DiscordChatExporter/releases/download/2.36.4/DiscordChatExporter.Cli.zip && unzip DiscordChatExporter.Cli.zip
-      - run: mkdir data
+      - run: mkdir data && ls
       - run: dotnet DiscordChatExporter.Cli/DiscordChatExporter.Cli.dll export -c ${{ secrets.DISCORD_CHANNEL_ID }} -f json --filter "from:${{ secrets.DISCORD_USER }} poop" --after $(python3 .github/scripts/prev_month.py) --before $(python3 .github/scripts/prev_month.py --last) -o data
       - run: python3 .github/scripts/convert.py -d data
       - uses: actions/upload-artifact@v3
