@@ -10,15 +10,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - uses: borales/actions-yarn@v3.0.0
+      - uses: actions/setup-node@v3
         with:
-          cmd: install # will run `yarn install` command
-      - uses: borales/actions-yarn@v3.0.0
+          node-version: 16
+      - run: yarn
+      - run: yarn build
+      - uses: actions/upload-pages-artifact@v1
         with:
-          cmd: build # will run `yarn build` command
-      - uses: actions/upload-artifact@v2
-        with: 
-          name: deployment
           path: build
 
   # Deploy job
