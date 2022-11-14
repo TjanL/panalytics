@@ -1,4 +1,6 @@
+#!/usr/bin/env python3
 import json
+from pathlib import Path
 import re
 import csv
 import argparse
@@ -26,20 +28,16 @@ def parse_file(filename):
 
 def parse_args():
     parser = argparse.ArgumentParser()
-    parser.add_argument("-i", metavar="file",
-                        help="Input json file", required=True)
-    parser.add_argument("-o", metavar="file", default=f'{datetime.datetime.now().strftime("%Y%m%d%H%M%S")}.csv',
-                        help="Output file")
-    args = parser.parse_args()
-
-    return vars(args)
+    parser.add_argument("-d", metavar="dir", help="Input dir", required=True)
+    return parser.parse_args()
 
 
 if __name__ == "__main__":
     args = parse_args()
-    data = parse_file(args["i"])
+    for path in Path(args.dir).glob("*.json"):
+        data = parse_file(path)
 
-    with open(args["o"], "w", newline="") as file:
-        writer = csv.DictWriter(file, fieldnames=["Date", "Poops"])
-        writer.writeheader()
-        writer.writerows(data)
+        with open(f"{Path(args.dir).joinpath(path.stem)}.csv", "w", newline="") as file:
+            writer = csv.DictWriter(file, fieldnames=["Date", "Poops"])
+            writer.writeheader()
+            writer.writerows(data)
