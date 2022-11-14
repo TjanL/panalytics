@@ -34,7 +34,7 @@ def parse_args():
 
 if __name__ == "__main__":
     args = parse_args()
-    for path in Path(args.dir).glob("*.json"):
+    for path in Path(args.d).glob("*.json"):
         data = parse_file(path)
 
         with open(f"{Path(args.dir).joinpath(path.stem)}.csv", "w", newline="") as file:
