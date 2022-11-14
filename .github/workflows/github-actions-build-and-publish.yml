@@ -10,7 +10,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - run: sudo apt install -y dotnet6
-      - run: sudo locale-gen sl_SI.UTF-8 && sudo update-locale LANG=sl_SI.UTF-8
+      - run: sudo locale-gen sl_SI.UTF-8 && sudo update-locale LANG=sl_SI.UTF-8 && data
       - run: wget https://github.com/Tyrrrz/DiscordChatExporter/releases/download/2.36.4/DiscordChatExporter.Cli.zip && unzip DiscordChatExporter.Cli.zip
       - run: mkdir data
       - run: sudo dotnet DiscordChatExporter.Cli.dll export -t ${{ secrets.DISCORD_TOKEN }} -c ${{ secrets.DISCORD_CHANNEL_ID }} -f json --filter "from:${{ secrets.DISCORD_USER }} poop" --after $(python3 .github/scripts/prev_month.py) --before $(python3 .github/scripts/prev_month.py --last) -o data
