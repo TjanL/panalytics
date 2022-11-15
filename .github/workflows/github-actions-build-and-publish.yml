@@ -13,7 +13,7 @@ jobs:
       - run: sudo locale-gen sl_SI sl_SI.UTF-8 && sudo dpkg-reconfigure locales
       - run: wget https://github.com/Tyrrrz/DiscordChatExporter/releases/download/2.36.4/DiscordChatExporter.Cli.zip && unzip DiscordChatExporter.Cli.zip
       - run: mkdir data
-      - run: sudo dotnet DiscordChatExporter.Cli.dll export -t ${{ secrets.DISCORD_TOKEN }} -c ${{ secrets.DISCORD_CHANNEL_ID }} -f json --filter "from:${{ secrets.DISCORD_USER }} poop" --after $(python3 .github/scripts/prev_month.py) -o data
+      - run: sudo dotnet DiscordChatExporter.Cli.dll export -t ${{ secrets.DISCORD_TOKEN }} -c ${{ secrets.DISCORD_CHANNEL_ID }} -f json --filter "from:${{ secrets.DISCORD_USER }} poop" -o data #--after $(python3 .github/scripts/prev_month.py)
       - run: sudo python3 .github/scripts/convert.py -d data
       - uses: actions/upload-artifact@v3
         with:
