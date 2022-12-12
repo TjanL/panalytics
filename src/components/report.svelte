@@ -33,8 +33,23 @@
 		return Array.from({ length: n }, (_, x) => m * x + b);
 	}
 
+	function slope(data: Array<number>) {
+		let n = data.length;
+		let max = maxPerDay(data);
+		let slope = (max - 1) / n;
+
+		return slope
+	}
+
+	function linear(data: Array<number>) {
+		let n = data.length;
+		let a = slope(data);
+
+		return Array.from({ length: n }, (_, x) => a * x + 1);
+	}
+
 	function isMonthPositive(data: Array<number>) {
-		return LSR(data) >= 1;
+		return avgPerDay(data) >= 1;
 	}
 
 	function maxPerMonth(data: Array<number>) {
@@ -64,7 +79,7 @@
 
 	let data = {
 		labels: labels,
-		series: [trendLine(monthData), monthData]
+		series: [linear(monthData), monthData]
 	};
 
 	let options = {
