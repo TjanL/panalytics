@@ -35,7 +35,7 @@
 
 	function slope(data: Array<number>) {
 		let n = data.length;
-		let max = maxPerDay(data);
+		let max = avgPerDay(data);
 		let slope = (max - 1) / n;
 
 		return slope
